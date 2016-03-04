@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="action_settings">SEttings</string>
+    <string name="text1">Text 1</string>
+    <string name="asdkfjdsalkfjaslkfds">Text 2</string>
+    <string name="qpofivzpoibvoqewkasdojfiajds">Text 3</string>
+
 </resources>

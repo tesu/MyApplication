@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.example.jlam.myapplication.MyTextView
+        app:initialValue="@integer/zero"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/meme1"
+        android:background="#f00"
+        android:textColor="#000"
+        android:textSize="30dp"/>
+    <com.example.jlam.myapplication.MyTextView
+        app:initialValue="@integer/zero"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/meme2"
+        android:background="#11ff00"
+        android:textColor="#000"
+        android:textSize="30dp"/>
+    <com.example.jlam.myapplication.MyTextView
+        app:initialValue="@integer/zero"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/meme3"
+        android:background="#0080ff"
+        android:textColor="#000"
+        android:textSize="30dp"/>
+    <com.example.jlam.myapplication.MyTextView
+        app:initialValue="@integer/zero"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/meme4"
+        android:background="#ea00ff"
+        android:textColor="#000"
+        android:textSize="30dp"/>
+</RelativeLayout>

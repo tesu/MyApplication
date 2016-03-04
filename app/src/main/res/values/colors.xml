@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="a">#765</color>
+    <color name="b">#123</color>
+    <color name="c">#098</color>
+    <color name="d">#0004ff</color>
+    <color name="INVISIBLE">#FFFFFF</color>
 </resources>
