@@ -1,6 +1,7 @@
 package com.example.jlam.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,122 +15,46 @@ import android.widget.*;
 import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
-//    static TextView meme = null;
-    SharedPreferences p = null;
-    SharedPreferences.Editor e = null;
-    int create = 0, start = 0, resume = 0, stop = 0, restart = 0, destroy = 0;
-    private void nice(String xd) {
-        if (p == null) {
-            p = getPreferences(Context.MODE_PRIVATE);
-            e = p.edit();
-        }
-
-        switch (xd) {
-            case "create":
-                create++;
-                e.putInt("create", p.getInt("create", 0)+1);
-                break;
-            case "start":
-                start++;
-                e.putInt("start", p.getInt("start", 0)+1);
-                break;
-            case "resume":
-                resume++;;
-                e.putInt("resume", p.getInt("resume", 0)+1);
-                break;
-            case "stop":
-                stop++;;
-                e.putInt("stop", p.getInt("stop", 0)+1);
-                break;
-            case "restart":
-                restart++;;
-                e.putInt("restart", p.getInt("restart", 0)+1);
-                break;
-            case "destroy":
-                destroy++;;
-                e.putInt("destroy", p.getInt("destroy", 0)+1);
-                break;
-        }
-        e.commit();
-
-//        meme.setText("onCreate: " + create + "\nonStart: " + start + "\nonResume: " + resume + "\nonStop: " + stop + "\nonRestart: " + restart + "\nonDestroy: " + destroy);
-//        meme.setText("onCreate: " + p.getInt("create",0) + "\nonStart: " + p.getInt("start",0) + "\nonResume: " + p.getInt("resume",0) + "\nonStop: " + p.getInt("stop",0) + "\nonRestart: " + p.getInt("restart",0) + "\nonDestroy: " + p.getInt("destroy",0));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-        setContentView(R.layout.layout);
+        setContentView(R.layout.activity_main);
 
-        MyTextView[] t = { (MyTextView) findViewById(R.id.meme1), (MyTextView) findViewById(R.id.meme2), (MyTextView) findViewById(R.id.meme3), (MyTextView) findViewById(R.id.meme4)};
-        for (int i = 0; i < t.length; i++) {
-            final MyTextView tView = t[i];
-            t[i].setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    tView.incrementAndUpdate();
-                }
-            });
+        Spinner d = (Spinner) findViewById(R.id.spinner);
+        String[] items = new String[26];
+        for (int i = 0; i < 26; i++) {
+            items[i] = ""+(char)('A'+i);
         }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        d.setAdapter(adapter);
 
-//        meme = (TextView) findViewById(R.id.meme2);
-//        nice("create");
+        d.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                launchMain2((String) parent.getItemAtPosition(position));
+            }
 
-//        meme.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                meme.setText(nice());
-//            }
-//        });
-//        Button b = (Button) findViewById(R.id.meme);
-//
-//        b.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Toast.makeText(MainActivity.this, "u pressed the button", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        Integer[] memes = {0, R.id.xd1, R.id.xd2, R.id.xd3, R.id.xd4};
-//        for (int i = 1; i <= 4; i++) {
-//            final int me = i;
-//            findViewById(memes[i]).setOnClickListener(new View.OnClickListener() {
-//                int xd = 0;
-//                public void onClick(View v) {
-//                    Toast.makeText(MainActivity.this, "u have pressed button #" + me + " a total of " + (++xd) + " times", Toast.LENGTH_SHORT).show();
-//                    Log.i("onCreate", "xd" + me + " has been pressed for the " + xd + "th time");
-//                }
-//            });
-//        }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
-//    @Override
-//    protected void onStart() {
-//        nice("start");
-//        super.onStart();
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        nice("resume");
-//        super.onResume();
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        nice("stop");
-//        super.onStop();
-//    }
-//
-//    @Override
-//    protected void onRestart() {
-//        nice("restart");
-//        super.onRestart();
-//    }
-//
-//    @Override
-//    protected void onDestroy() {
-//        nice("destroy");
-//        super.onDestroy();
-//    }
+    public void launchMain2(String text) {
+        Intent i = new Intent(MainActivity.this, Main2Activity.class);
+        i.putExtra("string", text);
+        startActivityForResult(i, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent d) {
+        TextView t = (TextView) findViewById(R.id.t2);
+        if (requestCode == 1 && resultCode == 1) {
+            t.setText("You typed \"" + d.getExtras().getString("result") + "\"");
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
